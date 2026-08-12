@@ -12,6 +12,9 @@ class CatController extends Controller
      */
     public function index()
     {
+        // $data = Cat::all();
+        $data = Cat::get();
+        dd($data);
         // dd('hello CatController index');
         return view('cat.index');
     }
