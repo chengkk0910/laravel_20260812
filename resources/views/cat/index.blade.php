@@ -61,6 +61,9 @@
             <a href="./create.html">新增</a>
         </div>
         <table class="table table-bordered mt-5">
+            @php
+                // dd($data);
+            @endphp
             <thead>
                 <tr>
                     <th class="text-center" width="10%">id</th>
@@ -69,27 +72,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Amy</td>
-                    <td>
-                        <a href="./edit.html?id=1">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Bob</td>
-                    <td>
-                        <a href="./edit.html?id=2">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Cat</td>
-                    <td>
-                        <a href="./edit.html?id=3">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
+                @foreach ($data as $value)
+                    <tr>
+                        <td class="text-center">{{$value->id}}</td>
+                        <td class="text-center">{{$value->name}}</td>
+                        <td>
+                            <a href="./edit.html?id=1">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
+                        </td>
+                    </tr>
+                @endforeach
+
+
 
             </tbody>
         </table>
