@@ -12,7 +12,8 @@ class CatController extends Controller
      */
     public function index()
     {
-        //
+        // dd('hello CatController index');
+        return view('cat.index');
     }
 
     /**
