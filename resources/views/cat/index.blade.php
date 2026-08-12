@@ -58,7 +58,7 @@
         <h2>Cat Table Index</h2>
         <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
         <div class="text-end">
-            <a href="./create.html">新增</a>
+            <a href="{{route('cats.create')}}">新增</a>
         </div>
         <table class="table table-bordered mt-5">
             @php

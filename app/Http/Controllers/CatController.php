@@ -24,7 +24,8 @@ class CatController extends Controller
      */
     public function create()
     {
-        //
+        // dd('CatController create');
+        return view('cat.create');
     }
 
     /**
