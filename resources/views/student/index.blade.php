@@ -68,7 +68,7 @@
                 <tr>
                     <th class="text-center" width="10%">id</th>
                     <th class="text-center" width="10%">name</th>
-                    <th class="text-center" width="10%">phone</th>
+                    <th class="text-center" width="15%">phone</th>
                     <th>opt</th>
                 </tr>
             </thead>
@@ -77,7 +77,7 @@
                     <tr>
                         <td class="text-center">{{ $value->id }}</td>
                         <td class="text-center">{{ $value->name }}</td>
-                        <td class="text-center">{{ $value->phone }}</td>
+                        <td class="text-center">{{ $value->phone->name }}</td>
                         <td>
                             <form action="{{ route('students.destroy', ['student' => $value->id]) }}" method="post">
                                 @csrf

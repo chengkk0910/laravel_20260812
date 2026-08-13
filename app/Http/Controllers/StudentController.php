@@ -16,7 +16,7 @@ class StudentController extends Controller
         // $data = Student::all();
         // with 我們的relation
         $data = Student::with('phone')->get();
-        dd($data);
+        // dd($data[0]->phone->name);
         // dd($data);
         // dd('hello StudentController index');
         return view('student.index')->with(['data' => $data]);
