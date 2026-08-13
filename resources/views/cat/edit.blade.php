@@ -38,16 +38,20 @@
     </nav> -->
     <!-- nav end -->
     <div class="container mt-3">
-        <h2>Cat Create form 新增</h2>
+        <h2>Cat Edit form 修改 ID = <span>{{$data->id}}</span></h2>
         <form action="{{route('cats.store')}}" method="POST">
             @csrf
             <div class="mb-3 mt-3">
                 <label for="name">Name:</label>
-                <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name">
+                <input type="name" class="form-control" value="{{$data->name}}" id="name" placeholder="Enter Name" name="name">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+    @php
+        // dd($data);
+    @endphp
 
 </body>
 

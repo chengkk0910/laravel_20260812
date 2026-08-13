@@ -33,7 +33,18 @@ class CatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $input = $request->all();
+        $input = $request->except('_token');
+        // dd($input);
+        // dd($input['name']);
+        $data = new Cat;
+
+        $data->name = $input['name'];
+
+        $data->save();
+
+        return redirect()->route('cats.index');
+        // dd('CatController store');
     }
 
     /**
@@ -49,7 +60,10 @@ class CatController extends Controller
      */
     public function edit(Cat $cat)
     {
-        //
+        // dd($cat->name);    
+        $data = $cat;
+        // dd("Hello Edit ");
+        return view('cat.edit')->with(['data' => $data]);
     }
 
     /**

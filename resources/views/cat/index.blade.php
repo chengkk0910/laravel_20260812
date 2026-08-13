@@ -58,7 +58,7 @@
         <h2>Cat Table Index</h2>
         <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
         <div class="text-end">
-            <a href="{{route('cats.create')}}">新增</a>
+            <a href="{{ route('cats.create') }}">新增</a>
         </div>
         <table class="table table-bordered mt-5">
             @php
@@ -74,10 +74,11 @@
             <tbody>
                 @foreach ($data as $value)
                     <tr>
-                        <td class="text-center">{{$value->id}}</td>
-                        <td class="text-center">{{$value->name}}</td>
+                        <td class="text-center">{{ $value->id }}</td>
+                        <td class="text-center">{{ $value->name }}</td>
                         <td>
-                            <a href="./edit.html?id=1">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
+                            <a href="{{ route('cats.edit', ['cat' => $value->id]) }}">修改</a> &nbsp;&nbsp;<a
+                                href="./del.html?id=1">刪除</a>
                         </td>
                     </tr>
                 @endforeach
