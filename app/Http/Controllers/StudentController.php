@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Phone;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -13,7 +14,9 @@ class StudentController extends Controller
     public function index()
     {
         // $data = Student::all();
-        $data = Student::get();
+        // with 我們的relation
+        $data = Student::with('phone')->get();
+        dd($data);
         // dd($data);
         // dd('hello StudentController index');
         return view('student.index')->with(['data' => $data]);

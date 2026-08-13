@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CatController;
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\StudentController;
+
+// phones
+Route::resource('phones', PhoneController::class);
 
 // students
 Route::resource('students', StudentController::class);
