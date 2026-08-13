@@ -71,7 +71,16 @@ class CatController extends Controller
      */
     public function update(Request $request, Cat $cat)
     {
-        //
+        $input = $request->except('_token', '_method');
+        // $input = $request->all();
+        // dd($input);
+        $id = $cat->id;
+        // $data = Cat::find($id);
+        $data = Cat::where('id', $id)->first();
+        // dd($data);
+        $data->name = $input['name'];
+        $data->save();
+        return redirect()->route('cats.index');
     }
 
     /**
