@@ -40,11 +40,18 @@ class StudentController extends Controller
         $input = $request->except('_token');
         // dd($input);
         // dd($input['name']);
+        // 1.先建立 主表 student
         $data = new Student;
-
         $data->name = $input['name'];
-
         $data->save();
+
+        $student_id = $data->id;
+
+        // 2.建立 子表 phone
+        $phoneData = new Phone;
+        $phoneData->student_id = $student_id;
+        $phoneData->name = $input['phone'];
+        $phoneData->save();
 
         return redirect()->route('students.index');
         // dd('StudentController store');

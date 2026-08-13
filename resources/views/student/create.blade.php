@@ -39,11 +39,13 @@
     <!-- nav end -->
     <div class="container mt-3">
         <h2>Student Create form 新增</h2>
-        <form action="{{route('students.store')}}" method="POST">
+        <form action="{{ route('students.store') }}" method="POST">
             @csrf
             <div class="mb-3 mt-3">
                 <label for="name">Name:</label>
                 <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name">
+                <label for="name">Phone:</label>
+                <input type="name" class="form-control" id="name" placeholder="Enter Phone" name="phone">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
