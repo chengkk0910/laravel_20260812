@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-12 08:28:43
+-- 產生時間： 2026-08-13 08:20:42
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -80,9 +80,10 @@ CREATE TABLE `cats` (
 
 INSERT INTO `cats` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'amy', NULL, NULL),
-(2, 'bob', NULL, NULL),
+(2, 'bob', NULL, '2026-08-12 18:23:11'),
 (3, 'cat', NULL, NULL),
-(4, 'dog', NULL, NULL);
+(4, 'dog', NULL, NULL),
+(10, 'egg', '2026-08-12 18:23:18', '2026-08-12 18:23:18');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '0001_01_01_000002_create_jobs_table', 1),
 (6, '2026_08_12_022942_create_cars_table', 2),
 (7, '2026_08_12_052259_create_dogs_table', 3),
-(8, '2026_08_12_053724_create_cats_table', 4);
+(8, '2026_08_12_053724_create_cats_table', 4),
+(9, '2026_08_13_052927_create_students_table', 5),
+(10, '2026_08_13_060022_create_phones_table', 6);
 
 -- --------------------------------------------------------
 
@@ -183,6 +186,29 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `phones`
+--
+
+CREATE TABLE `phones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` varchar(255) DEFAULT '',
+  `name` varchar(255) DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `phones`
+--
+
+INSERT INTO `phones` (`id`, `student_id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '4', '0911-111-111', NULL, NULL),
+(2, '5', '0922-222-222', NULL, NULL),
+(3, '6', '0933-333-333', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -204,7 +230,30 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('PkjvkxOi86mkzwXCXjmJtYHRCJSEO1dzMjgrK6Wz', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoic3VKUHpYOFd5ZVY3NzFVZmtuRk81UXFVblc4ZWJ6UHU4VkFYOVdkWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3QvY2F0cyI7czo1OiJyb3V0ZSI7czoxMDoiY2F0cy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1786515683);
+('EWVAVR5iOc22TD0NAhkWT8UI24olUxP6kyvJp5Mh', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU3l2MWtyY1pqWDFjd1NrQjlFQzgzZ3Fvd255c3FUdUFtcjhycElhUCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9sb2NhbGhvc3Qvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MTQ6InN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1786601060),
+('jciITuS4sie8CCxFEPwAnEhFh62tSLylmeXD7572', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSm1GREJ5Ym5mZzNBNmZhZWJKT1FOVnAzRU9FZE1tZDR1dENHZUtQbCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3QvY2F0cyI7czo1OiJyb3V0ZSI7czoxMDoiY2F0cy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1786590218);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `students`
+--
+
+CREATE TABLE `students` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(4, 'amy', '2026-08-12 21:36:42', '2026-08-12 21:36:42'),
+(5, 'bob', '2026-08-12 21:36:49', '2026-08-12 21:36:49'),
+(6, 'cat', '2026-08-12 21:36:53', '2026-08-12 21:36:53');
 
 -- --------------------------------------------------------
 
@@ -292,12 +341,24 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- 資料表索引 `phones`
+--
+ALTER TABLE `phones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- 資料表索引 `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `users`
@@ -320,7 +381,7 @@ ALTER TABLE `cars`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cats`
 --
 ALTER TABLE `cats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dogs`
@@ -344,7 +405,19 @@ ALTER TABLE `jobs`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `phones`
+--
+ALTER TABLE `phones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
