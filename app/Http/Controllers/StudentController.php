@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cat;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class CatController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $data = Cat::all();
-        $data = Cat::get();
+        // $data = Student::all();
+        $data = Student::get();
         // dd($data);
-        // dd('hello CatController index');
-        return view('cat.index')->with(['data' => $data]);
+        // dd('hello StudentController index');
+        return view('student.index')->with(['data' => $data]);
     }
 
     /**
@@ -24,8 +24,8 @@ class CatController extends Controller
      */
     public function create()
     {
-        // dd('CatController create');
-        return view('cat.create');
+        // dd('StudentController create');
+        return view('student.create');
     }
 
     /**
@@ -37,20 +37,20 @@ class CatController extends Controller
         $input = $request->except('_token');
         // dd($input);
         // dd($input['name']);
-        $data = new Cat;
+        $data = new Student;
 
         $data->name = $input['name'];
 
         $data->save();
 
-        return redirect()->route('cats.index');
-        // dd('CatController store');
+        return redirect()->route('students.index');
+        // dd('StudentController store');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cat $cat)
+    public function show(Student $Student)
     {
         //
     }
@@ -58,40 +58,40 @@ class CatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cat $cat)
+    public function edit(Student $Student)
     {
-        // dd($cat->name);    
-        $data = $cat;
+        // dd($Student->name);    
+        $data = $Student;
         // dd("Hello Edit ");
-        return view('cat.edit')->with(['data' => $data]);
+        return view('student.edit')->with(['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cat $cat)
+    public function update(Request $request, Student $Student)
     {
         $input = $request->except('_token', '_method');
         // $input = $request->all();
         // dd($input);
-        $id = $cat->id;
-        // $data = Cat::find($id);
-        $data = Cat::where('id', $id)->first();
+        $id = $Student->id;
+        // $data = Student::find($id);
+        $data = Student::where('id', $id)->first();
         // dd($data);
         $data->name = $input['name'];
         $data->save();
-        return redirect()->route('cats.index');
+        return redirect()->route('students.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cat $cat)
+    public function destroy(Student $Student)
     {
-        $id = $cat->id;
-        Cat::where('id', $id)->first()->delete();
+        $id = $Student->id;
+        Student::where('id', $id)->first()->delete();
         // dd($id);
         // dd('del ok');
-        return redirect()->route('cats.index');
+        return redirect()->route('students.index');
     }
 }

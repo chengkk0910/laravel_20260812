@@ -18,7 +18,7 @@
 <body>
 
     <!-- nav -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    {{-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0)">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -42,7 +42,7 @@
                 </form>
             </div>
         </div>
-    </nav>
+    </nav> --}}
     <!-- nav end -->
 
     <!-- msg -->
@@ -58,9 +58,12 @@
         <h2>Student Table Index</h2>
         <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
         <div class="text-end">
-            <a href="./create.html">新增</a>
+            <a class="btn btn-success" href="{{ route('students.create') }}">新增</a>
         </div>
         <table class="table table-bordered mt-5">
+            @php
+                // dd($data);
+            @endphp
             <thead>
                 <tr>
                     <th class="text-center" width="10%">id</th>
@@ -69,27 +72,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Amy</td>
-                    <td>
-                        <a href="./edit.html?id=1">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Bob</td>
-                    <td>
-                        <a href="./edit.html?id=2">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Cat</td>
-                    <td>
-                        <a href="./edit.html?id=3">修改</a> &nbsp;&nbsp;<a href="./del.html?id=1">刪除</a>
-                    </td>
-                </tr>
+                @foreach ($data as $value)
+                    <tr>
+                        <td class="text-center">{{ $value->id }}</td>
+                        <td class="text-center">{{ $value->name }}</td>
+                        <td>
+                            <form action="{{ route('students.destroy', ['student' => $value->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <a class="btn btn-warning" href="{{ route('students.edit', ['student' => $value->id]) }}">修改</a> &nbsp;&nbsp;
+                                <button class="btn btn-danger" type="submit">刪除</button>
+                            </form>
+                            {{-- <a href="./del.html?id=1">刪除123</a> --}}
+                        </td>
+                    </tr>
+                @endforeach
+
+
 
             </tbody>
         </table>

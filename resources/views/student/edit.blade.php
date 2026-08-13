@@ -11,7 +11,7 @@
 
 <body>
     <!-- nav -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0)">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -35,18 +35,25 @@
                 </form>
             </div>
         </div>
-    </nav>
+    </nav> -->
     <!-- nav end -->
     <div class="container mt-3">
-        <h2>Student Edit form 修改</h2>
-        <form action="./update.html">
+        <h2>Student Edit form 修改 ID = <span>{{ $data->id }}</span></h2>
+        <form action="{{ route('students.update', ['student' => $data->id]) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="mb-3 mt-3">
                 <label for="name">Name:</label>
-                <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name" value="editName">
+                <input type="name" class="form-control" value="{{ $data->name }}" id="name"
+                    placeholder="Enter Name" name="name">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+    @php
+        // dd($data);
+    @endphp
 
 </body>
 

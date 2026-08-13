@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CatController;
+use App\Http\Controllers\StudentController;
+
+// students
+Route::resource('students', StudentController::class);
 
 // cats
 Route::resource('cats', CatController::class);
@@ -11,6 +15,6 @@ Route::resource('cats', CatController::class);
 Route::resource('cars', CarController::class);
 
 Route::get('/', function () {
-    return redirect()->route('cats.index');
+    return redirect()->route('students.index');
     // return view('welcome');
 });

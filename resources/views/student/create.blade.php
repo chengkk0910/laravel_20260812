@@ -11,7 +11,7 @@
 
 <body>
     <!-- nav -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0)">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -35,11 +35,12 @@
                 </form>
             </div>
         </div>
-    </nav>
+    </nav> -->
     <!-- nav end -->
     <div class="container mt-3">
         <h2>Student Create form 新增</h2>
-        <form action="./store.html">
+        <form action="{{route('students.store')}}" method="POST">
+            @csrf
             <div class="mb-3 mt-3">
                 <label for="name">Name:</label>
                 <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name">
