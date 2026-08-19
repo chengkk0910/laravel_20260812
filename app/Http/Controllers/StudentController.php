@@ -71,7 +71,11 @@ class StudentController extends Controller
     public function edit(Student $Student)
     {
         // dd($Student->name);    
-        $data = $Student;
+        // $data = $Student->with('phone')->get();
+        $id = $Student->id;
+        // first 單一 get 多筆 
+        $data = Student::where('id', $id)->with('phone')->first();
+        // dd($data);
         // dd("Hello Edit ");
         return view('student.edit')->with(['data' => $data]);
     }
@@ -85,11 +89,23 @@ class StudentController extends Controller
         // $input = $request->all();
         // dd($input);
         $id = $Student->id;
+
+        // 1.修改主表
         // $data = Student::find($id);
         $data = Student::where('id', $id)->first();
         // dd($data);
         $data->name = $input['name'];
         $data->save();
+
+        // 2.刪除子表  如果子表資料 金錢 或者 很重要 記得 不要刪除 保留 可以用修改子表 讓他不顯示
+        Phone::where('student_id', $id)->first()->delete();
+
+        // 3.建立子表
+        $phoneData = new Phone;
+        $phoneData->student_id = $id;
+        $phoneData->name = $input['phone'];
+        $phoneData->save();
+
         return redirect()->route('students.index');
     }
 
@@ -99,7 +115,11 @@ class StudentController extends Controller
     public function destroy(Student $Student)
     {
         $id = $Student->id;
+        // dd('del ok');
+        // 1.刪除主表
         Student::where('id', $id)->first()->delete();
+        // 2.刪除子表
+        Phone::where('student_id', $id)->first()->delete();
         // dd($id);
         // dd('del ok');
         return redirect()->route('students.index');

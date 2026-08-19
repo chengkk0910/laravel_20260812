@@ -46,6 +46,9 @@
                 <label for="name">Name:</label>
                 <input type="name" class="form-control" value="{{ $data->name }}" id="name"
                     placeholder="Enter Name" name="name">
+                <label for="name">Phone:</label>
+                <input type="name" class="form-control" value="{{ $data->phone->name }}" id="phone"
+                    placeholder="Enter Phone" name="phone">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
