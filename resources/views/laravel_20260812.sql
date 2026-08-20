@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2026-08-19 02:48:25
+-- 產生時間： 2026-08-20 02:52:15
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -117,6 +117,35 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `hobbies`
+--
+
+CREATE TABLE `hobbies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(255) DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `hobbies`
+--
+
+INSERT INTO `hobbies` (`id`, `student_id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'html', NULL, NULL),
+(2, 1, 'css', NULL, NULL),
+(3, 1, 'js', NULL, NULL),
+(4, 2, 'css', NULL, NULL),
+(5, 2, 'js', NULL, NULL),
+(6, 3, 'php', NULL, NULL),
+(7, 3, 'laravel', NULL, NULL),
+(8, 3, 'css', NULL, NULL),
+(9, 3, 'js', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `jobs`
 --
 
@@ -173,7 +202,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2026_08_12_052259_create_dogs_table', 3),
 (8, '2026_08_12_053724_create_cats_table', 4),
 (9, '2026_08_13_052927_create_students_table', 5),
-(10, '2026_08_13_060022_create_phones_table', 6);
+(17, '2026_08_13_060022_create_phones_table', 6),
+(19, '2026_08_20_003802_create_hobbies_table', 7);
 
 -- --------------------------------------------------------
 
@@ -195,7 +225,7 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `phones` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `student_id` varchar(255) DEFAULT '',
+  `student_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(255) DEFAULT '',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -206,12 +236,9 @@ CREATE TABLE `phones` (
 --
 
 INSERT INTO `phones` (`id`, `student_id`, `name`, `created_at`, `updated_at`) VALUES
-(1, '4', '0911-111-111', NULL, NULL),
-(2, '5', '0922-222-222', NULL, NULL),
-(3, '6', '0933-333-333', NULL, NULL),
-(6, '9', '0911-111-123', '2026-08-18 16:24:50', '2026-08-18 16:24:50'),
-(7, '7', '09123456', '2026-08-18 16:46:10', '2026-08-18 16:46:10'),
-(8, '8', 't123456', '2026-08-18 16:46:20', '2026-08-18 16:46:20');
+(1, 1, '0911', '2026-08-19 16:44:07', '2026-08-19 16:44:07'),
+(2, 2, '0922', '2026-08-19 16:44:17', '2026-08-19 16:44:17'),
+(3, 3, '0933', '2026-08-19 16:44:24', '2026-08-19 16:44:24');
 
 -- --------------------------------------------------------
 
@@ -233,7 +260,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('WIpmxXnJRij7imh7dQkVncrdGVW6Tzif4epRpRyt', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicWFZTEY0MjZuU0xoaFdjMWRubjZLZzMyclZ1aXBmYnpQY0pmU0FjTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9sb2NhbGhvc3Qvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MTQ6InN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1787100380);
+('p0tLeFppKQ1JhsPhwHXHxkzK914SgZH3Pz2wm0Mr', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTk9saDFyd2FMWXRTWVoyYnM2VlZ5MG1TRm1uNW9hMmZCcTlXRlBVdCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9sb2NhbGhvc3Qvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MTQ6InN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1787186664),
+('WIpmxXnJRij7imh7dQkVncrdGVW6Tzif4epRpRyt', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicWFZTEY0MjZuU0xoaFdjMWRubjZLZzMyclZ1aXBmYnpQY0pmU0FjTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9sb2NhbGhvc3Qvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MTQ6InN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1787102363);
 
 -- --------------------------------------------------------
 
@@ -253,12 +281,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(4, 'amy', '2026-08-12 21:36:42', '2026-08-12 21:36:42'),
-(5, 'bob', '2026-08-12 21:36:49', '2026-08-12 21:36:49'),
-(6, 'cat', '2026-08-12 21:36:53', '2026-08-12 21:36:53'),
-(7, 'kai456', '2026-08-12 23:37:39', '2026-08-18 16:44:57'),
-(8, 'test456', '2026-08-12 23:37:48', '2026-08-18 16:46:20'),
-(9, 'name1', '2026-08-18 16:24:50', '2026-08-18 16:24:50');
+(1, 'amy', '2026-08-19 16:44:07', '2026-08-19 16:44:07'),
+(2, 'bob', '2026-08-19 16:44:17', '2026-08-19 16:44:17'),
+(3, 'cat', '2026-08-19 16:44:24', '2026-08-19 16:44:24');
 
 -- --------------------------------------------------------
 
@@ -319,6 +344,12 @@ ALTER TABLE `dogs`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- 資料表索引 `hobbies`
+--
+ALTER TABLE `hobbies`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `jobs`
@@ -401,6 +432,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `hobbies`
+--
+ALTER TABLE `hobbies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `jobs`
 --
 ALTER TABLE `jobs`
@@ -410,19 +447,19 @@ ALTER TABLE `jobs`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
