@@ -46,6 +46,8 @@
                 <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name">
                 <label for="name">Phone:</label>
                 <input type="name" class="form-control" id="name" placeholder="Enter Phone" name="phone">
+                <label for="name">Hobbies: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex: html,css,js 使用逗號分割</label>
+                <input type="name" class="form-control" id="name" placeholder="Enter Hobbies" name="hobbyString">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Phone;
+use App\Models\Hobby;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -60,8 +61,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // array:3 [▼ // app\Http\Controllers\StudentController.php:65
+        //   "name" => "egg"
+        //   "phone" => "0955"
+        //   "hobbyString" => "python,java"
+        // ]
+
         // $input = $request->all();
         $input = $request->except('_token');
+
         // dd($input);
         // dd($input['name']);
         // 1.先建立 主表 student
@@ -76,6 +84,15 @@ class StudentController extends Controller
         $phoneData->student_id = $student_id;
         $phoneData->name = $input['phone'];
         $phoneData->save();
+
+        // 3.建立 子表 hobbies
+        $hobbyArray = explode(',', $input['hobbyString']);
+        foreach ($hobbyArray as $key => $value) {
+            $hobbyData = new Hobby;
+            $hobbyData->student_id = $student_id;
+            $hobbyData->name = $value;
+            $hobbyData->save();
+        }
 
         return redirect()->route('students.index');
         // dd('StudentController store');
