@@ -62,3 +62,25 @@ SELECT
 FROM
     `students`
     INNER JOIN `hobbies` ON `students`.`id` = `hobbies`.`student_id`;
+
+SELECT
+    `students`.`id`,
+    `students`.`name` AS `student_name`,
+    `phones`.`name` AS `phone_name`,
+    `hobbies`.`name` AS `hobby_name`
+FROM
+    `students`
+    INNER JOIN `phones` ON `students`.`id` = `phones`.`student_id`
+    INNER JOIN `hobbies` ON `students`.`id` = `hobbies`.`student_id`;
+
+INSERT INTO
+    `hobbies` (
+        `id`,
+        `student_id`,
+        `name`,
+        `created_at`,
+        `updated_at`
+    )
+VALUES
+    (NULL, '4', 'php', NULL, NULL),
+    (NULL, '4', 'js', NULL, NULL);
