@@ -15,9 +15,32 @@ class StudentController extends Controller
     {
         // $data = Student::all();
         // with 我們的relation
-        $data = Student::with('phone')->with('hobbies')->get();
-        dd($data);
+        $data = Student::with('phone', 'hobbies')->get();
+        // $data = Student::with('phone')->with('hobbies')->get();
+        // dd($data);
+        // one to one 單一
+        // one to many 多筆 foreach
         // dd($data[0]->phone->name);
+        // dd($data[0]->hobbies[2]->name);
+        foreach ($data as $key => $value) {
+            $dataHobbies = $value->hobbies;
+            // dd($dataHobbies);
+            $hobbyArray = [];
+            foreach ($dataHobbies as $keyHobby => $valueHobby) {
+                array_push($hobbyArray, $valueHobby->name);
+            }
+            $hobbyString = join(',', $hobbyArray);
+            // dd($hobbyArray);
+            // dd($hobbyString);
+            $data[$key]['hobbyString'] = $hobbyString;
+            # code...
+        }
+
+        // 透過array_push 將data['hobbies']組成
+        // data['hobbies'] = ['html', 'css' ,'js']
+        // 透過join(',',$hobbyArray)
+        // data['hobbyString] = 'html,css,js';
+
         // dd($data);
         // dd('hello StudentController index');
         return view('student.index')->with(['data' => $data]);
