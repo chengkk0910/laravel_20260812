@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Student extends Model
 {
     // phone relation name
-    // 一對多 單數 phone
+    // 一對一 單數 phone
     public function phone(): HasOne
     {
         return $this->hasOne(Phone::class);

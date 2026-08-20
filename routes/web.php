@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\StudentController;
+
+// hobbies
+Route::resource('hobbies', HobbyController::class);
 
 // phones
 Route::resource('phones', PhoneController::class);

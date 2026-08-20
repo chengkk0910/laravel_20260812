@@ -115,7 +115,21 @@ class StudentController extends Controller
         // $data = $Student->with('phone')->get();
         $id = $Student->id;
         // first 單一 get 多筆 
-        $data = Student::where('id', $id)->with('phone')->first();
+        $data = Student::where('id', $id)->with('phone', 'hobbies')->first();
+
+        $dataHobbies = $data->hobbies;
+        // dd($dataHobbies);
+
+        $hobbyArray = [];
+        foreach ($dataHobbies as $keyHobby => $valueHobby) {
+            array_push($hobbyArray, $valueHobby->name);
+        }
+        // dd($hobbyArray);
+        $hobbyString = join(',', $hobbyArray);
+        // dd($hobbyString);
+
+        $data['hobbyString'] = $hobbyString;
+
         // dd($data);
         // dd("Hello Edit ");
         return view('student.edit')->with(['data' => $data]);
@@ -139,13 +153,24 @@ class StudentController extends Controller
         $data->save();
 
         // 2.刪除子表  如果子表資料 金錢 或者 很重要 記得 不要刪除 保留 可以用修改子表 讓他不顯示
-        Phone::where('student_id', $id)->first()->delete();
+        // 修改刪除 記得 delete 全部 first只有刪除第一筆
+        Phone::where('student_id', $id)->delete();
+        Hobby::where('student_id', $id)->delete();
 
-        // 3.建立子表
+        // 3.建立子表 phone
         $phoneData = new Phone;
         $phoneData->student_id = $id;
         $phoneData->name = $input['phone'];
         $phoneData->save();
+
+        // 4.建立子表 hobbies
+        $hobbyArray = explode(',', $input['hobbyString']);
+        foreach ($hobbyArray as $key => $value) {
+            $hobbyData = new Hobby;
+            $hobbyData->student_id = $id;
+            $hobbyData->name = $value;
+            $hobbyData->save();
+        }
 
         return redirect()->route('students.index');
     }
@@ -160,7 +185,8 @@ class StudentController extends Controller
         // 1.刪除主表
         Student::where('id', $id)->first()->delete();
         // 2.刪除子表
-        Phone::where('student_id', $id)->first()->delete();
+        Phone::where('student_id', $id)->delete();
+        Hobby::where('student_id', $id)->delete();
         // dd($id);
         // dd('del ok');
         return redirect()->route('students.index');
